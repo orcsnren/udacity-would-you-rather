@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { configureStore } from '@reduxjs/toolkit';
+import { Provider } from "react-redux";
 import './index.css';
 import App from './components/App';
-import { Provider } from "react-redux";
-import { configureStore } from '@reduxjs/toolkit'
-import RootReducer from './reducers'
+import reducer from './reducers'
+import thunk from 'redux-thunk'
+import logger from './middleware/logger'
 
-const store = configureStore({reducer : RootReducer})
+const store = configureStore({ reducer: reducer, middleware: [thunk, logger] })
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
-  </Provider>
-  ,
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
-)
+);
+
