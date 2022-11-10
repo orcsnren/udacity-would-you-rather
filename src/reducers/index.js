@@ -4,7 +4,7 @@ import users from './users'
 import questions from './questions'
 import spinner from './spinner'
 
-import { QUESTION_ANSWER } from '../actions/shared'
+import { QUESTION_ANSWER } from '../actions/questions'
 export function questionAnswer (state = null, action) {
   switch (action.type) {
     case QUESTION_ANSWER :
