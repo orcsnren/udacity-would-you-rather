@@ -15,11 +15,3 @@ export const handleInitialData = () => {
       });
   }
 }
-
-export const QUESTION_ANSWER = 'QUESTION_ANSWER'
-export const questionAnswer = (answer) => {
-  return {
-    type: QUESTION_ANSWER,
-    answer
-  }
-}

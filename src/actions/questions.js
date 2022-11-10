@@ -1,17 +1,24 @@
 import { saveQuestionAnswer, saveQuestion} from '../utils/api';
 import { addQuestionResponseToUser, addQuestionToUser } from './users';
 import { spinner } from './spinner'
-import { questionAnswer } from './shared'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const ADD_QUESTION_ANSWER = 'ADD_QUESTION_ANSWER';
 export const ADD_QUESTION = 'ADD_QUESTION';
+export const QUESTION_ANSWER = 'QUESTION_ANSWER'
 
 export const receiveQuestions = (questions) => {
   return {
     type: RECEIVE_QUESTIONS,
     questions,
   } 
+}
+
+export const questionAnswer = (answer) => {
+  return {
+    type: QUESTION_ANSWER,
+    answer
+  }
 }
 
 const answerQuestion = ({ authedUser, qid, answer }) => {
@@ -46,6 +53,7 @@ const addQuestion = (question) => {
     question
   };
 }
+
 
 export const handleAddQuestion = (authedUser, optionOne, optionTwo) => {
   return (dispatch) => {
