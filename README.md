@@ -1,5 +1,5 @@
 # Udacity Would You Rather? Project
-This project represents the React/Redux combined practicising for Udacity's React Nanodegree course.\
+This project represents the React/Redux combined practicising for Udacity's React Nanodegree course.
 
 At this game you should give answers to "Would You Rather" questions and you need to choose from only two options. Answering "neither" or "both" is against the rules.
 
