@@ -5,7 +5,7 @@ import Image from 'react-bootstrap/Image';
 function Leaderboard() {
   const { users } = useSelector((state) => ({ ...state }));
 
-  const formatUsers = (usersObj) => {
+  const userContainer = (usersObj) => {
     let returnArr = []
     Object.entries(usersObj).map(([key, value]) => {
       const answerCount = Object.keys(value.answers).length;
@@ -22,7 +22,7 @@ function Leaderboard() {
     return returnArr
   }
 
-  const formattedUsers = formatUsers(users).sort((a, b) => {
+  const sortedUsers = userContainer(users).sort((a, b) => {
     return b.score - a.score;
   });
 
@@ -30,7 +30,7 @@ function Leaderboard() {
     <div className="centered-container">
       <div id="leaderboard">
         <h3>Leaderboard</h3>
-        {Object.entries(formattedUsers).map(([key, user]) => (
+        {Object.entries(sortedUsers).map(([key, user]) => (
           <div className="leaderboard-item" key={key}>
             <div className="leaderboard-avatar">
               <Image width="50" height="50" src={user.avatarURL} />

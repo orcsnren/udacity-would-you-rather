@@ -1,4 +1,4 @@
-import { saveQuestionAnswer, saveQuestion} from '../utils/api';
+import { saveQuestionAnswer, saveQuestion } from '../utils/api';
 import { addQuestionResponseToUser, addQuestionToUser } from './users';
 import { spinner } from './spinner'
 
@@ -11,7 +11,7 @@ export const receiveQuestions = (questions) => {
   return {
     type: RECEIVE_QUESTIONS,
     questions,
-  } 
+  }
 }
 
 export const questionAnswer = (answer) => {
@@ -22,29 +22,29 @@ export const questionAnswer = (answer) => {
 }
 
 const answerQuestion = ({ authedUser, qid, answer }) => {
-	return {
-		type: ADD_QUESTION_ANSWER,
-		qid,
-		authedUser,
-		answer,
-	};
+  return {
+    type: ADD_QUESTION_ANSWER,
+    qid,
+    authedUser,
+    answer,
+  };
 };
 
 export const handleAnswerQuestion = info => {
-	return (dispatch) => {
+  return (dispatch) => {
     dispatch(spinner(true));
     dispatch(questionAnswer(info.answer));
     saveQuestionAnswer(info)
-    .then(() => {
-      dispatch(answerQuestion(info));
-      dispatch(addQuestionResponseToUser(info))
-    }).then(() => {
-      dispatch(spinner(false));
-    })
-		return saveQuestionAnswer(info).catch(() => {
-			alert('We could not handle your request to respond to this question. It is unfortunate.');
-		});
-	};
+      .then(() => {
+        dispatch(answerQuestion(info));
+        dispatch(addQuestionResponseToUser(info))
+      }).then(() => {
+        dispatch(spinner(false));
+      })
+    return saveQuestionAnswer(info).catch(() => {
+      alert('We could not handle your request to respond to this question. It is unfortunate.');
+    });
+  };
 };
 
 const addQuestion = (question) => {
@@ -58,18 +58,18 @@ const addQuestion = (question) => {
 export const handleAddQuestion = (authedUser, optionOne, optionTwo) => {
   return (dispatch) => {
     dispatch(spinner(true));
-    return saveQuestion ({
+    return saveQuestion({
       optionOneText: optionOne,
       optionTwoText: optionTwo,
       author: authedUser
     })
-    .then((question) => {
-      dispatch(addQuestion(question));
-      dispatch(addQuestionToUser(question))
-      dispatch(spinner(false));
-    })
-    .catch(() => {
-      alert('Adding a question failed. Life is like that sometimes.')
-    })
+      .then((question) => {
+        dispatch(addQuestion(question));
+        dispatch(addQuestionToUser(question))
+        dispatch(spinner(false));
+      })
+      .catch(() => {
+        alert('Adding a question is failed!')
+      })
   }
 }

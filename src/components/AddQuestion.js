@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { handleAddQuestion } from '../actions/questions'
 import { useNavigate } from 'react-router-dom';
 
-function AddQuestion () {
+function AddQuestion() {
   const dispatch = useDispatch();
   const { authedUser } = useSelector((state) => ({ ...state }));
   const [optionOne, setOptionOne] = useState('');
@@ -34,7 +34,7 @@ function AddQuestion () {
         Would you rather ...
 
         <form onSubmit={handleSubmit}>
-          <input type="text" onChange={handleOptionOneChange} value={optionOne}/>
+          <input type="text" onChange={handleOptionOneChange} value={optionOne} />
           <div id="add_question_form_or">OR</div>
           <input type="text" onChange={handleOptionTwoChange} value={optionTwo} />
           <button>Ask</button>

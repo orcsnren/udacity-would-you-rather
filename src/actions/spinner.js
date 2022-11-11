@@ -4,5 +4,5 @@ export const spinner = (boolean) => {
   return {
     type: SPINNER,
     boolean,
-  } 
+  }
 }

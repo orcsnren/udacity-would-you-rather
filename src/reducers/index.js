@@ -1,16 +1,16 @@
-import { combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 import authedUser from './authedUser'
 import users from './users'
 import questions from './questions'
 import spinner from './spinner'
 
 import { QUESTION_ANSWER } from '../actions/questions'
-export function questionAnswer (state = null, action) {
+export function questionAnswer(state = null, action) {
   switch (action.type) {
-    case QUESTION_ANSWER :
+    case QUESTION_ANSWER:
       return action.answer;
-    default :
-    return state;
+    default:
+      return state;
   }
 }
 

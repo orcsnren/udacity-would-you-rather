@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 import Image from 'react-bootstrap/Image';
 import React from 'react';
 
-function SignIn () {
+function SignIn() {
 
   const dispatch = useDispatch();
   const { authedUser } = useSelector((state) => ({ ...state }))
@@ -20,12 +20,12 @@ function SignIn () {
     <nav className={!authedUser ? "gradient" : ""}>
       {authedUser && (<>
         <div id="nav-links">
-          <span className={(location.pathname === '/') ? 'active': ''}><Link to='/'>ANSWER QUESTION</Link></span>&nbsp;
-          <span className={(location.pathname === '/add') ? 'active': ''}><Link to='/add'>ADD QUESTION</Link></span>
-          <span className={(location.pathname === '/leaderboard') ? 'active': ''}><Link to='/leaderboard'>LEADERBOARD</Link></span>
+          <span className={(location.pathname === '/') ? 'active' : ''}><Link to='/'>ANSWER QUESTION</Link></span>&nbsp;
+          <span className={(location.pathname === '/add') ? 'active' : ''}><Link to='/add'>ADD QUESTION</Link></span>
+          <span className={(location.pathname === '/leaderboard') ? 'active' : ''}><Link to='/leaderboard'>LEADERBOARD</Link></span>
         </div>
         <div id="nav-user">
-          <Image src={users[authedUser].avatarURL} width="30" height="30"/>
+          <Image src={users[authedUser].avatarURL} width="30" height="30" />
           <span id="nav-sign-out" onClick={handleSignOut}>SIGN OUT</span>
         </div>
       </>)}

@@ -13,7 +13,7 @@ function SignIn () {
     dispatch(setAuthedUser(name));
   }
 
-  const handleDropdownChange = (e) => {
+  const handleChange = (e) => {
     setName(e.target.value);
   }
 
@@ -22,8 +22,8 @@ function SignIn () {
       <h2>Welcome to the Would You Rather voting app!</h2>
       <br></br>
       <form onSubmit={handleSubmit}>
-        <select defaultValue={'default'} onChange={handleDropdownChange}>
-        <option value="default" disabled>Select a user</option>
+        <select defaultValue={'default'} onChange={handleChange}>
+        <option value="default" disabled>Select an user</option>
         {Object.entries(users).map(([key, value]) => (
             <option key={key} value={value.id}>{value.name}</option>
           ))

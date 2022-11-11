@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
 import Question from './Question';
-function QuestionsPage () {
+function QuestionsPage() {
 
   const { authedUser } = useSelector((state) => ({ ...state }));
   const { users } = useSelector((state) => ({ ...state }));
@@ -18,9 +18,9 @@ function QuestionsPage () {
   sortQuestionArr(answeredKeys);
   const unansweredKeys = questionKeys.filter(id => !answeredKeys.includes(id))
   sortQuestionArr(unansweredKeys);
-  const [ selectedQuestions, setSelectedQuestions] = useState(unansweredKeys);
-  const [ menuItemAnsweredActive, setMenuItemAnsweredActive] = useState('');
-  const [ menuItemUnansweredActive, setMenuItemUnansweredActive] = useState('active');
+  const [selectedQuestions, setSelectedQuestions] = useState(unansweredKeys);
+  const [menuItemAnsweredActive, setMenuItemAnsweredActive] = useState('');
+  const [menuItemUnansweredActive, setMenuItemUnansweredActive] = useState('active');
 
   useEffect(() => {
     setMenuItemAnsweredActive('');
@@ -49,9 +49,9 @@ function QuestionsPage () {
         </div>
         <div id="questions">
           {selectedQuestions.map((id) => {
-            return(
+            return (
               <div className="question-item" key={id}>
-                <Question id={id}/>
+                <Question id={id} />
               </div>
             )
           })}

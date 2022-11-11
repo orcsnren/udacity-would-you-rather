@@ -23,18 +23,18 @@ function App() {
   return (
     <BrowserRouter>
       <div id="App">
-        <Nav/>
+        <Nav />
         <main>
-        {(spinner) ? <Spinner/> :
-        <>{authedUser ?
-          <Routes>
-          <Route path='/' exact element={<QuestionsPage/>} />
-          <Route path='/questions/:id' element={<AnswerQuestion/>} />
-          <Route path='/add' element={<AddQuestion/>} />
-          <Route path='/leaderboard' element={<Leaderboard/>} />
-        </Routes>
-        : <SignIn/> }</>}
-      </main>
+          {(spinner) ? <Spinner /> :
+            <>{authedUser ?
+              <Routes>
+                <Route path='/' exact element={<QuestionsPage />} />
+                <Route path='/questions/:id' element={<AnswerQuestion />} />
+                <Route path='/add' element={<AddQuestion />} />
+                <Route path='/leaderboard' element={<Leaderboard />} />
+              </Routes>
+              : <SignIn />}</>}
+        </main>
       </div>
     </BrowserRouter>
   );
