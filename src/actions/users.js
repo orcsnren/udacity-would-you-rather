@@ -19,7 +19,7 @@ export const addQuestionToUser = (question) => {
 export const addQuestionResponseToUser = (info) => {
   return {
     type: ADD_QUESTION_RESPONSE_TO_USER,
-    authedUser: info.authedUser,
+    loggedUser: info.loggedUser,
     qid: info.qid,
     answer: info.answer
   }

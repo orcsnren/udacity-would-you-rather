@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom';
 
 function AddQuestion() {
   const dispatch = useDispatch();
-  const { authedUser } = useSelector((state) => ({ ...state }));
+  const { loggedUser } = useSelector((state) => ({ ...state }));
   const [optionOne, setOptionOne] = useState('');
   const [optionTwo, setOptionTwo] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(handleAddQuestion(authedUser, optionOne, optionTwo));
+    dispatch(handleAddQuestion(loggedUser, optionOne, optionTwo));
     setOptionOne('');
     setOptionTwo('');
     navigate('/');

@@ -10,7 +10,7 @@ function AnswerQuestion() {
 
   const { users } = useSelector((state) => ({ ...state }));
   const { questions } = useSelector((state) => ({ ...state }));
-  const { authedUser } = useSelector((state) => ({ ...state }));
+  const { loggedUser } = useSelector((state) => ({ ...state }));
   const { questionAnswer } = useSelector((state) => ({ ...state }));
   const { id } = useParams()
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ function AnswerQuestion() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    dispatch(handleAnswerQuestion({ qid: id, authedUser, answer: e.target.id }));
+    dispatch(handleAnswerQuestion({ qid: id, loggedUser, answer: e.target.id }));
   }
 
   const totalVotes = () => {
@@ -43,6 +43,7 @@ function AnswerQuestion() {
   const optionOneVotes = idExist ? questions[id].optionOne.votes.length : '0';
   const optionTwoVotes = idExist ? questions[id].optionTwo.votes.length : '0';
 
+  // TODO 
   return (
     <div className="centered-container">
       {idExist ? <>
@@ -75,7 +76,7 @@ function AnswerQuestion() {
               </div>
               {(questionAnswer === "optionOne") && (<div className="result-yourvote">YOUR VOTE</div>)}
             </div>
-
+     
             <div className={`option-box ${(questionAnswer === "optionTwo") ? "selected" : ""}`}>
               <div className="result-title">Would you rather {questions[id].optionTwo.text}</div>
               <div className="result-votes">

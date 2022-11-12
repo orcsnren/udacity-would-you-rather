@@ -1,36 +1,34 @@
-import { setAuthedUser } from '../actions/authedUser';
+import { setLoggedUser } from '../actions/loggedUser';
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Image from 'react-bootstrap/Image';
 import React from 'react';
 
-function SignIn() {
+function Nav() {
 
   const dispatch = useDispatch();
-  const { authedUser } = useSelector((state) => ({ ...state }))
+  const { loggedUser } = useSelector((state) => ({ ...state }))
   const { users } = useSelector((state) => ({ ...state }));
 
-  const location = useLocation();
-
   const handleSignOut = () => {
-    dispatch(setAuthedUser(null));
+    dispatch(setLoggedUser(''));
   }
 
   return (
-    <nav className={!authedUser ? "gradient" : ""}>
-      {authedUser && (<>
+    <nav>
+      {loggedUser && (<>
         <div id="nav-links">
-          <span className={(location.pathname === '/') ? 'active' : ''}><Link to='/'>ANSWER QUESTION</Link></span>&nbsp;
-          <span className={(location.pathname === '/add') ? 'active' : ''}><Link to='/add'>ADD QUESTION</Link></span>
-          <span className={(location.pathname === '/leaderboard') ? 'active' : ''}><Link to='/leaderboard'>LEADERBOARD</Link></span>
+          <span ><Link to='/'>Answer Question</Link></span>
+          <span ><Link to='/add'>New Question</Link></span>
+          <span ><Link to='/leaderboard'>Leaderboard</Link></span>
         </div>
         <div id="nav-user">
-          <Image src={users[authedUser].avatarURL} width="30" height="30" />
-          <span id="nav-sign-out" onClick={handleSignOut}>SIGN OUT</span>
+          <Image src={users[loggedUser].avatarURL} width="30" height="30" />
+          <span id="nav-sign-out" onClick={handleSignOut}>LOG OUT</span>
         </div>
       </>)}
     </nav>
   );
 }
 
-export default SignIn;
+export default Nav;

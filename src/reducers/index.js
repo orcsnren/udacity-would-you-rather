@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import authedUser from './authedUser'
+import loggedUser from './loggedUser'
 import users from './users'
 import questions from './questions'
 import spinner from './spinner'
@@ -15,7 +15,7 @@ export function questionAnswer(state = null, action) {
 }
 
 export default combineReducers({
-  authedUser,
+  loggedUser,
   users,
   questions,
   spinner,

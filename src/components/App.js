@@ -4,7 +4,7 @@ import { useSelector, useDispatch, connect } from "react-redux";
 import { handleInitialData } from '../actions/shared'
 import Spinner from './Spinner';
 import Nav from './Nav';
-import SignIn from './SignIn';
+import Login from './Login';
 import QuestionsPage from './QuestionsPage';
 import AddQuestion from './AddQuestion';
 import AnswerQuestion from './AnswerQuestion';
@@ -18,7 +18,7 @@ function App() {
     dispatch(handleInitialData());
   }, []);
 
-  const { authedUser } = useSelector((state) => ({ ...state }));
+  const { loggedUser } = useSelector((state) => ({ ...state }));
   const { spinner } = useSelector((state) => ({ ...state }));
   return (
     <BrowserRouter>
@@ -26,14 +26,14 @@ function App() {
         <Nav />
         <main>
           {(spinner) ? <Spinner /> :
-            <>{authedUser ?
+            <>{loggedUser ?
               <Routes>
                 <Route path='/' exact element={<QuestionsPage />} />
                 <Route path='/questions/:id' element={<AnswerQuestion />} />
                 <Route path='/add' element={<AddQuestion />} />
                 <Route path='/leaderboard' element={<Leaderboard />} />
               </Routes>
-              : <SignIn />}</>}
+              : <Login />}</>}
         </main>
       </div>
     </BrowserRouter>

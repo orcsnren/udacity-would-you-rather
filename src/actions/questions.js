@@ -21,11 +21,11 @@ export const questionAnswer = (answer) => {
   }
 }
 
-const answerQuestion = ({ authedUser, qid, answer }) => {
+const answerQuestion = ({ loggedUser, qid, answer }) => {
   return {
     type: ADD_QUESTION_ANSWER,
     qid,
-    authedUser,
+    loggedUser,
     answer,
   };
 };
@@ -42,7 +42,7 @@ export const handleAnswerQuestion = info => {
         dispatch(spinner(false));
       })
     return saveQuestionAnswer(info).catch(() => {
-      alert('We could not handle your request to respond to this question. It is unfortunate.');
+      alert('An error occured while answering question');
     });
   };
 };
@@ -55,13 +55,13 @@ const addQuestion = (question) => {
 }
 
 
-export const handleAddQuestion = (authedUser, optionOne, optionTwo) => {
+export const handleAddQuestion = (loggedUser, optionOne, optionTwo) => {
   return (dispatch) => {
     dispatch(spinner(true));
     return saveQuestion({
       optionOneText: optionOne,
       optionTwoText: optionTwo,
-      author: authedUser
+      author: loggedUser
     })
       .then((question) => {
         dispatch(addQuestion(question));
@@ -69,7 +69,7 @@ export const handleAddQuestion = (authedUser, optionOne, optionTwo) => {
         dispatch(spinner(false));
       })
       .catch(() => {
-        alert('Adding a question is failed!')
+        alert('An error occured while adding a question')
       })
   }
 }
