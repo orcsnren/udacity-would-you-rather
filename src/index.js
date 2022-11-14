@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from "react-dom/client";
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from "react-redux";
 import './index.css';
@@ -10,12 +10,13 @@ import logger from './middleware/logger'
 
 const store = configureStore({ reducer: reducer, middleware: [thunk, logger] })
 
-ReactDOM.render(
+const root = createRoot(document.getElementById("root"));
+
+root.render(
   <Provider store={store}>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 );
 
