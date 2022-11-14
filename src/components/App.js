@@ -6,7 +6,7 @@ import Spinner from './Spinner';
 import Nav from './Nav';
 import Login from './Login';
 import QuestionsPage from './QuestionsPage';
-import AddQuestion from './AddQuestion';
+import NewQuestion from './NewQuestion';
 import AnswerQuestion from './AnswerQuestion';
 import Leaderboard from './Leaderboard';
 
@@ -30,7 +30,7 @@ function App() {
               <Routes>
                 <Route path='/' exact element={<QuestionsPage />} />
                 <Route path='/questions/:id' element={<AnswerQuestion />} />
-                <Route path='/add' element={<AddQuestion />} />
+                <Route path='/add' element={<NewQuestion />} />
                 <Route path='/leaderboard' element={<Leaderboard />} />
               </Routes>
               : <Login />}</>}

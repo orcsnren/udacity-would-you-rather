@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Row, Button, ButtonGroup } from 'react-bootstrap';
+import { Row, Button, ButtonGroup, Container } from 'react-bootstrap';
 import { useSelector } from "react-redux";
 import Question from './Question';
 function QuestionsPage() {
@@ -21,7 +21,7 @@ function QuestionsPage() {
   }
 
   return (
-    <div className="centered-container">
+    <Container className='centered-container'>
       <div id="questions-container">
         <Row>
           <ButtonGroup>
@@ -29,17 +29,17 @@ function QuestionsPage() {
             <Button id='answered' variant="secondary" onClick={handleTab}>Answered Questions</Button>
           </ButtonGroup>
         </Row>
-        <div id="questions">
+        <div id="questions"  style={{ 'padding': '5px','background-color': '#fff'}}>
           {targetQuestions().map((id) => {
             return (
-              <div className="question-item" key={id}>
+              <div className="question-item mt-2" key={id}>
                 <Question id={id} />
               </div>
             )
           })}
         </div>
       </div>
-    </div>
+    </Container>
   );
 }
 

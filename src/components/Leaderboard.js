@@ -1,52 +1,57 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Image from 'react-bootstrap/Image';
+import { Container, Card, CardGroup} from 'react-bootstrap';
 
 function Leaderboard() {
   const { users } = useSelector((state) => ({ ...state }));
 
-  const userContainer = (usersObj) => {
-    let returnArr = []
-    Object.entries(usersObj).map(([key, value]) => {
-      const answerCount = Object.keys(value.answers).length;
-      const questionCount = value.questions.length;
-      returnArr.push({
-        id: value.id,
-        name: value.name,
-        avatarURL: value.avatarURL,
-        answerCount: answerCount,
-        questionCount: questionCount,
-        score: answerCount + questionCount
+  const userList = () => {
+    let userArr = []
+
+    debugger;
+    Object.keys(users).forEach(userNameId => {
+      const user = users[userNameId];
+      const name = user.name;
+      const answeredScore = Object.keys(user.answers).length;
+      const questionScore = user.questions.length;
+      const score = answeredScore + questionScore;
+      const avatarURL = user.avatarURL;
+
+
+      userArr.push({
+        name: name,
+        answeredScore: answeredScore,
+        questionScore: questionScore,
+        score: score,
+        avatarURL: avatarURL
       })
     })
-    return returnArr
+
+    return userArr
   }
 
-  const sortedUsers = userContainer(users).sort((a, b) => {
+  const sortedUsers = userList(users).sort((a, b) => {
     return b.score - a.score;
   });
 
   return (
-    <div className="centered-container">
-      <div id="leaderboard">
-        <h3>Leaderboard</h3>
-        {Object.entries(sortedUsers).map(([key, user]) => (
-          <div className="leaderboard-item" key={key}>
-            <div className="leaderboard-avatar">
-              <Image width="50" height="50" src={user.avatarURL} />
-            </div>
-            <div className="leaderboard-info">
-              <div>{user.name}</div>
-              <div>Answered Questions: {user.answerCount}</div>
-              <div>Created Questions: {user.questionCount}</div>
-            </div>
-            <div className="leaderboard-score">
-              <div>Score: {user.score}</div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    <Container style={{ width: '500px' }}>
+      <h1>Leaderboard</h1>
+        <CardGroup className="m-8 d-block">
+          {Object.entries(sortedUsers).map(([name, user]) => (
+            <Card border="info" id={name} className='mb-2'>
+              <Card.Img variant="top" src={user.avatarURL}/>
+              <Card.Body>            
+                <Card.Title className="mb-3">{user.name}</Card.Title>
+                <Card.Text>Answered Questions: {user.answeredScore}</Card.Text>
+                <Card.Text>Asked Questions: {user.questionScore}</Card.Text>
+                <Card.Text><b>Total Score:</b> {user.score}</Card.Text>
+              </Card.Body>
+            </Card>
+          ))}
+        </CardGroup>
+
+    </Container>
   );
 }
 

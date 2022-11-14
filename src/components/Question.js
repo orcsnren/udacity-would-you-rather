@@ -27,16 +27,13 @@ function Question(props) {
     return users[user_id].name;
   }
 
-  const avatarUrl = users[questions[props.id].author].avatarURL
-
   return (
     <>
-
       <div className="question-name">Asked By {author()}</div>
       <Container>
         <Row className='question mt-1'>
           <Stack direction='horizontal' gap={3} className='mt-2 mb-2'>
-            <div className="question-avatar"><img width="100" height="100" alt='avatar' src={avatarUrl} /></div>
+            <div className="question-avatar"><img width="100" height="100" alt='avatar' src={users[questions[props.id].author].avatarURL} /></div>
             <Stack direction='vertical' gap={1}>
               <div className='mt-1'>Would you rather</div>
               <div className='mt-1'>{formatQuestion(questions[props.id])}</div>

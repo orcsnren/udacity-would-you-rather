@@ -42,7 +42,7 @@ export const handleAnswerQuestion = info => {
         dispatch(spinner(false));
       })
     return saveQuestionAnswer(info).catch(() => {
-      alert('An error occured while answering question');
+      alert('An error occured while answering question!');
     });
   };
 };
