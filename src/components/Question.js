@@ -9,6 +9,7 @@ function Question(props) {
 
   const { users } = useSelector((state) => ({ ...state }));
   const { questions } = useSelector((state) => ({ ...state }));
+  const { loggedUser } = useSelector((state) => ({ ...state }));
 
   const dispatch = useDispatch();
 
@@ -24,7 +25,7 @@ function Question(props) {
 
   const author = () => {
     const user_id = questions[props.id].author;
-    return users[user_id].name;
+    return loggedUser === user_id ? 'You' : users[user_id].name;
   }
 
   return (
