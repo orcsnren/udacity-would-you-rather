@@ -27,9 +27,9 @@ function QuestionsPage() {
   }
 
   const targetQuestions = () => {
-    console.log(questions);
     return tab === 'unanswered' ? unansweredKeys : answeredKeys;
   }
+
 
   return (
     <Container className='centered-container'>
@@ -44,7 +44,7 @@ function QuestionsPage() {
           {targetQuestions().map((id) => {
             return (
               <div className="question-item mt-2" key={id}>
-                <Question id={id} />
+                <Question id={id} view={answeredKeys.includes(id)} />
               </div>
             )
           })}

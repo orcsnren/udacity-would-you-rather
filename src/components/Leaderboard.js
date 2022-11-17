@@ -8,7 +8,6 @@ function Leaderboard() {
   const userList = () => {
     let userArr = []
 
-    debugger;
     Object.keys(users).forEach(userNameId => {
       const user = users[userNameId];
       const name = user.name;

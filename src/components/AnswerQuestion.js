@@ -19,11 +19,18 @@ function AnswerQuestion() {
     e.preventDefault();
     dispatch(handleAnswerQuestion({ qid: id, loggedUser, answer: e.target.id }));
   }
+
+  const answeredKeys = Object.keys(users[loggedUser].answers);
+
+  const view = () => {
+    return answeredKeys.includes(id);
+  }
   
+  console.log(view());
   return (
     <div className="centered-container">
       <>
-        {!questionAnswer ? (
+        {(!questionAnswer && !view()) ? (
           <Container className='centered-container'>
             <Card border="info" style={{ width: '500px' }}>
               <Card.Img variant="left" src={users[questions[id].author].avatarURL} />

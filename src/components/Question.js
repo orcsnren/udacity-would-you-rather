@@ -28,6 +28,7 @@ function Question(props) {
     return loggedUser === user_id ? 'You' : users[user_id].name;
   }
 
+
   return (
     <>
       <div className="question-name">Asked By {author()}</div>
@@ -38,7 +39,10 @@ function Question(props) {
             <Stack direction='vertical' gap={1}>
               <div className='mt-1'>Would you rather</div>
               <div className='mt-1'>{formatQuestion(questions[props.id])}</div>
+              {props.view ? (
+              <div className='mt-1'><Link to={`/questions/${props.id}`}> <button onClick={handleClick}>View</button></Link></div>): 
               <div className='mt-1'><Link to={`/questions/${props.id}`}> <button onClick={handleClick}>Answer Now</button></Link></div>
+               }
             </Stack>
           </Stack>
         </Row>

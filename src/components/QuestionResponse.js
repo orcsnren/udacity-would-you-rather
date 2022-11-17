@@ -19,6 +19,14 @@ function QuestionResponse(props) {
     const optionOneVotes = questions[id].optionOne.votes.length;
     const optionTwoVotes = questions[id].optionTwo.votes.length;
 
+    const optionOneVoteStatistic = () => {
+        return optionOneVotes + ' of ' + totalVotes() + ' votes';
+    }
+
+    const optionTwoVoteStatistic = () => {
+        return optionTwoVotes + ' of ' + totalVotes() + ' votes';
+    }
+
     return (
 
         <Container className='centered-container'>
@@ -30,13 +38,14 @@ function QuestionResponse(props) {
                         Would you rather...
                     </Card.Text>
                     <Card.Text>
-                        {questions[id].optionOne.text}
+                        {questions[id].optionOne.text + ' (' + optionOneVoteStatistic() + ')'}
                     </Card.Text>
                     <ProgressBar variant="info" now={votePercentage(optionOneVotes)} label={`${votePercentage(optionOneVotes)}%`} /><br></br>
                     <Card.Text>
-                        {questions[id].optionTwo.text}
+                        {questions[id].optionTwo.text + ' (' + optionTwoVoteStatistic() + ')'}
                     </Card.Text>
                     <ProgressBar variant="info" now={votePercentage(optionTwoVotes)} label={`${votePercentage(optionTwoVotes)}%`} />
+
                 </Card.Body>
             </Card>
         </Container>
